@@ -1,4 +1,4 @@
-// Math functions for basics
+// Math functions
 function add(a, b) {
     return a + b;
 }
