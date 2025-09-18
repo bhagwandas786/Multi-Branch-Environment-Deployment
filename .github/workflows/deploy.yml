@@ -81,10 +81,11 @@ jobs:
       uses: slackapi/slack-github-action@v1
       with:
         slack-message: |
-          *Production Deployment Successful!*
-          Repo: ${{ github.repository }}
-          Branch: ${{ github.ref_name }}
-          Commit: ${{ github.sha }}
-          By: ${{ github.actor }}
+          *${{ github.workflow }} - Production Deployment Successful!* ✅
+          *Repository:* ${{ github.repository }}
+          *Branch:* ${{ github.ref_name }} 
+          *Commit:* ${{ github.sha }}
+          *By:* ${{ github.actor }}
+          *View Run:* ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
       env:
         SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
