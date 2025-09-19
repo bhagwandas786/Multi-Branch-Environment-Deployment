@@ -76,14 +76,11 @@ jobs:
         
     - name: Send Slack Notification
       if: success()
-      uses: slackapi/slack-github-action@v1 
+      uses: slackapi/slack-github-action@v1
       with:
         payload: |
-          *${{ github.workflow }} - Production Deployment Successful!* ✅
-          *Repository:* ${{ github.repository }}
-          *Branch:* ${{ github.ref_name }} 
-          *Commit:* ${{ github.sha }}
-          *By:* ${{ github.actor }}
-          *View Run:* ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
+          {
+             "text": "*CI/CD Deployment Pipeline - Production Deployment Successful!* ✅\n*Repository:* ${{ github.repository }}\n*Branch:* ${{ github.ref_name }}\n*Commit:* ${{ github.sha }}\n*By:* ${{ github.actor }}\n*View Run:* ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}"
+          }
       env:
         SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
