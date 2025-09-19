@@ -76,7 +76,7 @@ jobs:
         
     - name: Send Slack Notification
       if: success()
-      uses: slackapi/slack-github-action@v1
+      uses: slackapi/slack-github-action@v2
       with:
         text: |
           *${{ github.workflow }} - Production Deployment Successful!* ✅
