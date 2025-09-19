@@ -78,7 +78,7 @@ jobs:
       if: success()
       uses: slackapi/slack-github-action@v1 
       with:
-        slack-message: |
+        payload: |
           *${{ github.workflow }} - Production Deployment Successful!* ✅
           *Repository:* ${{ github.repository }}
           *Branch:* ${{ github.ref_name }} 
