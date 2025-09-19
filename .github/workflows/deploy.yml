@@ -76,7 +76,7 @@ jobs:
         
     - name: Send Slack Notification
       if: success()
-      uses: slackapi/slack-github-action@v1  # ← @v1 use karo
+      uses: slackapi/slack-github-action@v1 
       with:
         slack-message: |
           *${{ github.workflow }} - Production Deployment Successful!* ✅
