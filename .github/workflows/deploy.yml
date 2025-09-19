@@ -74,8 +74,13 @@ jobs:
         echo "🚀 DEPLOYING TO PRODUCTION"
         echo "All Tests Passed Successfully"
         
+  slack-notify:
+    name: Slack Notification
+    runs-on: ubuntu-latest
+    needs: production-deploy
+    if: success()
+    steps:
     - name: Send Slack Notification
-      if: success()
       uses: slackapi/slack-github-action@v1
       with:
         payload: |
