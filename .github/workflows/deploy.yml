@@ -36,9 +36,7 @@ jobs:
       uses: actions/upload-artifact@v4
       with:
         name: test-output
-        path: |
-          test-results/
-          coverage/
+        path: .
 
   qa-deploy:
     name: Deploy to QA
@@ -52,7 +50,7 @@ jobs:
       uses: actions/download-artifact@v4
       with:
         name: test-output
-        
+        path: ./
     - name: Deploy to QA
       run: |
         echo "Deploying to QA environment..."
@@ -70,21 +68,19 @@ jobs:
       uses: actions/download-artifact@v4
       with:
         name: test-output
-        
+        path: .
     - name: Production deployment
       run: |
         echo "🚀 DEPLOYING TO PRODUCTION"
-        echo "All tests passed successfully"
+        echo "All Tests Passed Successfully"
         
     - name: Send Slack Notification
       if: success()
       uses: slackapi/slack-github-action@v1
       with:
-        slack-message: |
-          *Production Deployment Successful!*
-          Repo: ${{ github.repository }}
-          Branch: ${{ github.ref_name }}
-          Commit: ${{ github.sha }}
-          By: ${{ github.actor }}
+        payload: |
+          {
+             "text": "*CI/CD Deployment Pipeline - Production Deployment Successful!* ✅\n*Repository:* ${{ github.repository }}\n*Branch:* ${{ github.ref_name }}\n*Commit:* ${{ github.sha }}\n*By:* ${{ github.actor }}\n*View Run:* ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}"
+          }
       env:
         SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
