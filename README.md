@@ -5,7 +5,7 @@
 * QA Deployment → Triggered on dev branch pushes, downloads artifacts and simulates deployment to QA.
 * Production Deployment → Triggered on main branch pushes, downloads artifacts and deploys to Production.
 * Slack Notification → Sends a success message after Production deployment.
-✅ Ensures code quality,
+✅ Ensures code quality overall,
 ✅ Prevents overlapping deploys with concurrency,
 ✅ Provides automated deployments for QA & Production,
 ✅ Notifies the team via Slack after Production success.
